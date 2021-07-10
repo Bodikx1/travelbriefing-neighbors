@@ -1,0 +1,12 @@
+.neighbors-form {
+  padding-left: 15px;
+}
+
+h3.neighbors-title {
+  border-bottom: 1px solid grey;
+  margin-bottom: 15px;
+}
+
+.neighbors-form button {
+  cursor: pointer;
+}
