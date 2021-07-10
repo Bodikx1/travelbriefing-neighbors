@@ -60,6 +60,11 @@ export default function NeighborsForm() {
           }
         });
       });
+
+      if (!mutualNeighborsToAdd.length) {
+        alert('No neighbors found!');
+      }
+
       setMutualNeighbors([...mutualNeighborsToAdd]);
     },
     [selectedCountries]
