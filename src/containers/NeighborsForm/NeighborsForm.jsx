@@ -53,10 +53,19 @@ export default function NeighborsForm() {
       }
 
       const mutualNeighborsToAdd = [];
+      const mutualNeighborsHashMap = {};
+
       Object.keys(nighborsGroupings).forEach((nighborsGroupingKey) => {
         nighborsGroupings[nighborsGroupingKey].map((item) => {
-          if (nighborsGroupings[item.name] && nighborsGroupings[item.name].some(relatedItem => relatedItem.name === nighborsGroupingKey)) {
+          if (
+            !mutualNeighborsHashMap[`${nighborsGroupingKey}${item.name}`] &&
+            !mutualNeighborsHashMap[`${item.name}${nighborsGroupingKey}`] &&
+            nighborsGroupings[item.name] &&
+            nighborsGroupings[item.name].some(relatedItem => relatedItem.name === nighborsGroupingKey)
+          ) {
             mutualNeighborsToAdd.push({ first: nighborsGroupingKey, second: item.name });
+            mutualNeighborsHashMap[`${nighborsGroupingKey}${item.name}`] = { first: nighborsGroupingKey, second: item.name };
+            mutualNeighborsHashMap[`${item.name}${nighborsGroupingKey}`] = { first: item.name, second: nighborsGroupingKey };
           }
         });
       });
